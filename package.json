@@ -1,7 +1,7 @@
 {
   "name": "edp-provider-smarty4js",
   "description": "edp 的 smarty4js 支持模块，为 webserver 和 build 命令提供了预定配置",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "contributors": [
     {
       "name": "junmer",
