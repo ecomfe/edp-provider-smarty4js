@@ -1,0 +1,13 @@
+{%strip%}
+<div class="smarty">
+{%if isset($tplData.dataList) and count($tplData.dataList)%}
+    <ul>
+    {%foreach $tplData.dataList as $item%}
+        <li>{%$item.title|escape:html%}</li>
+    {%/foreach%}
+    </ul>
+{%else%}
+    <div>没有数据</div>
+{%/if%}
+</div>
+{%/strip%}
