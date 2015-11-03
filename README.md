@@ -22,8 +22,12 @@ npm install edp-provider-smarty4js --save-dev
 var eps = require('edp-provider-smarty4js');
 
 // 默认配置
-eps.config();
+eps.config({
+    'left_delimiter': '{%',
+    'right_delimiter': '%}'
+});
 
+module.exports = exports = eps;
 ```
 
 在 `edp-webserver-config.js` 与 `edp-build-config.js` 顶部引入：
@@ -35,23 +39,53 @@ var eps = require('./edp-smarty4js-config.js');
 在 `edp-webserver-config.js` 对应部分添加：
 
 ```javascript
-var smarty4jsHandler = eps.server;
-smarty4jsHandler({
-    complieOption: eps.config()
-})
+var smarty4jsHandler = eps.webserver;
+
+exports.getLocations = function () {
+    return [
+        // handlers
+        {
+            location: /\.tpl\.js($|\?)/,
+            handler: [
+                smarty4jsHandler({
+                    extname: '.html',
+                    complieOption: eps.config()
+                })
+            ]
+        }    
+    ];
+};
+
+
 ```
 
 在 `edp-build-config.js` 对应部分添加：
 
 ```javascript
 var Smarty4jsCompiler = eps.build;
+
 new Smarty4jsCompiler({
+    files: [
+        'src/**/*.tpl.html'
+    ],
     complieOption: eps.config()
-})
+});
 ```
 
 搞定！
 
+DEMO
+==
+
+```sh
+git clone https://github.com/ecomfe/edp-provider-rider.git
+cd edp-provider-rider
+npm i 
+cd demo
+edp build
+edp webserver start
+```
+see: <http://127.0.0.1:8868> or <http://127.0.0.1:8868/output>
 
 相关
 ==
