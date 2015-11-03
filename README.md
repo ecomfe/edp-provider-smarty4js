@@ -78,8 +78,8 @@ DEMO
 ==
 
 ```sh
-git clone https://github.com/ecomfe/edp-provider-rider.git
-cd edp-provider-rider
+git clone https://github.com/ecomfe/edp-provider-smarty4js.git
+cd edp-provider-smarty4js
 npm i 
 cd demo
 edp build
