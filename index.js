@@ -8,15 +8,20 @@ var smarty4js = require('smarty4js');
 var webserver = require('./lib/webserver');
 var build = require('./lib/build');
 
+
+/* eslint-disable fecs-camelcase */
+
 /**
  * 默认配置
  *
  * @type {Object}
  */
 var defaultConfig = {
-    'left_delimiter': '{%',
-    'right_delimiter': '%}'
+    left_delimiter: '{%',
+    right_delimiter: '%}'
 };
+
+/* eslint-enable fecs-camelcase */
 
 /**
  * 获取／设置 配置
@@ -30,12 +35,11 @@ function config(opt) {
         return defaultConfig;
     }
 
-    if (typeof opt == 'string') {
+    if (typeof opt === 'string') {
         return defaultConfig[opt];
     }
-    else {
-        return extend(defaultConfig, opt);
-    }
+
+    return extend(defaultConfig, opt);
 
 }
 
